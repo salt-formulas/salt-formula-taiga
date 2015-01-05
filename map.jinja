@@ -1,0 +1,21 @@
+
+{% set server = salt['grains.filter_by']({
+    'Debian': {
+        'pkgs': ['build-essential', 'binutils-doc', 'autoconf', 'flex', 'bison', 'libjpeg-dev', 'libfreetype6-dev', 'zlib1g-dev', 'libzmq3-dev', 'libpq-dev', 'libgdbm-dev', 'libncurses5-dev', 'automake', 'libtool', 'libffi-dev', 'curl', 'tmux', 'python3', 'python3-pip', 'python-dev', 'python3-dev', 'python-pip', 'virtualenvwrapper'],
+        'dir': '/srv/taiga',
+        'user': 'taiga',
+        'group': 'taiga',
+        'backend_source': {
+            'address': 'https://github.com/taigaio/taiga-back.git',
+            'revision': 'stable',
+        },
+        'frontend_source': {
+            'address': 'https://github.com/taigaio/taiga-front.git',
+            'revision': 'stable',
+        },
+        'bind': {
+            'host': '127.0.0.1',
+            'port': 3128
+        },
+    },
+}, merge=salt['pillar.get']('taiga:server')) %}

@@ -4,6 +4,7 @@
 include:
 - git
 - nodejs
+- ruby
 
 taiga_packages:
   pkg.installed:
@@ -17,6 +18,11 @@ taiga_packages:
   - require:
     - pkg: taiga_packages
     - pkg: git_packages
+
+taiga_user:
+  user.present:
+  - name: taiga
+  - home: /srv/taiga
 
 taiga_backend_repo:
   git.latest:
@@ -34,6 +40,28 @@ taiga_frontend_repo:
   - require:
     - virtualenv: /srv/taiga
 
+taiga_dir:
+  file.directory:
+  - name: /srv/taiga
+  - user: taiga
+  - group: taiga
+  - require:
+    - virtualenv: /srv/taiga
+
+taiga_build_dirs:
+  file.directory:
+  - names:
+    - /srv/taiga/taiga-front/node_modules
+    - /srv/taiga/taiga-front/bower_components
+    - /srv/taiga/taiga-front/tmp
+    - /srv/taiga/taiga-front/dist
+    - /srv/taiga/taiga-front/app/vendor
+  - user: taiga
+  - group: taiga
+  - makedirs: true
+  - require:
+    - git: taiga_frontend_repo
+
 /srv/taiga/conf:
   file.directory:
   - mode: 755
@@ -42,11 +70,10 @@ taiga_frontend_repo:
     - virtualenv: /srv/taiga
 
 /srv/taiga/logs:
-  file:
-  - directory
-  - user: www-data
-  - group: www-data
-  - mode: 755
+  file.directory:
+  - user: taiga
+  - group: taiga
+  - mode: 775
   - makedirs: true
   - require:
     - virtualenv: /srv/taiga
@@ -74,6 +101,10 @@ taiga_frontend_repo:
   - mode: 644
   - require:
     - file: /srv/taiga/conf
+
+init_taiga_circus:
+  cmd.run:
+  - name: sudo pip2 install circus
 
 /etc/init/circus.conf:
   file.managed:
@@ -107,5 +138,49 @@ init_taiga_database:
   - cwd: /srv/taiga/taiga-back
   - require:
     - cmd: setup_taiga_database
+
+gulp:
+  npm.installed:
+  - require:
+    - pkg: nodejs_packages
+
+bower:
+  npm.installed:
+  - require:
+    - pkg: nodejs_packages
+
+sass:
+  gem.installed:
+  - require:
+    - pkg: ruby_packages
+
+scss-lint:
+  gem.installed:
+  - require:
+    - pkg: ruby_packages
+
+init_taiga_frontend_npm:
+  cmd.run:
+  - name: npm install
+  - user: taiga
+  - cwd: /srv/taiga/taiga-front
+  - require:
+    - pkg: nodejs_packages
+
+init_taiga_frontend_bower:
+  cmd.run:
+  - name: bower install
+  - user: taiga
+  - cwd: /srv/taiga/taiga-front
+  - require:
+    - npm: bower
+
+init_taiga_frontend_gulp:
+  cmd.run:
+  - name: gulp deploy
+  - user: taiga
+  - cwd: /srv/taiga/taiga-front
+  - require:
+    - npm: gulp
 
 {%- endif %}

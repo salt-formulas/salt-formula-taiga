@@ -3,6 +3,7 @@
 
 include:
 - git
+- nodejs
 
 taiga_packages:
   pkg.installed:
@@ -33,14 +34,6 @@ taiga_frontend_repo:
   - require:
     - virtualenv: /srv/taiga
 
-/srv/taiga/site/server.wsgi:
-  file.managed:
-  - source: salt://taiga/conf/server.wsgi
-  - mode: 755
-  - template: jinja
-  - require:
-    - file: /srv/taiga/site
-
 /srv/taiga/conf:
   file.directory:
   - mode: 755
@@ -66,6 +59,14 @@ taiga_frontend_repo:
   - require:
     - git: taiga_backend_repo
 
+/srv/taiga/taiga-front/conf/main.json:
+  file.managed:
+  - source: salt://taiga/files/main.json
+  - template: jinja
+  - mode: 644
+  - require:
+    - git: taiga_frontend_repo
+
 /srv/taiga/conf/circus.ini:
   file.managed:
   - source: salt://taiga/files/circus.ini
@@ -73,6 +74,21 @@ taiga_frontend_repo:
   - mode: 644
   - require:
     - file: /srv/taiga/conf
+
+/etc/init/circus.conf:
+  file.managed:
+  - source: salt://taiga/files/circus.conf
+  - template: jinja
+  - mode: 644
+  - require:
+    - file: /srv/taiga/conf/circus.ini
+
+circus_service:
+  service.running: 
+  - name: circus
+  - enable: true
+  - watch:
+    - file: /etc/init/circus.conf
 
 setup_taiga_database:
   cmd.run:

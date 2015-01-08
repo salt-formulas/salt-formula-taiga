@@ -8,7 +8,7 @@ ADMIN_MEDIA_PREFIX = "/static/admin/"
 
 # This should change if you want generate urls in emails
 # for external dns.
-SITES["front"]["domain"] = "localhost:80"
+SITES["front"]["domain"] = "localhost"
 
 DEBUG = True
 TEMPLATE_DEBUG = True

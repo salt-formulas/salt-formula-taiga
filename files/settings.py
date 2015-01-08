@@ -8,13 +8,13 @@ ADMIN_MEDIA_PREFIX = "/static/admin/"
 
 # This should change if you want generate urls in emails
 # for external dns.
-SITES["front"]["domain"] = "localhost"
+SITES["front"]["domain"] = "{{ server.server_name }}"
 
 DEBUG = True
 TEMPLATE_DEBUG = True
 PUBLIC_REGISTER_ENABLED = True
 
-DEFAULT_FROM_EMAIL = "no-reply@example.com"
+DEFAULT_FROM_EMAIL = "{{ server.mail_from }}"
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

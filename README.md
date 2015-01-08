@@ -10,6 +10,8 @@ Simple taiga server
     taiga:
       server:
         enabled: true
+        server_name: 'taiga.domain.com'
+        mail_from: 'taiga@domain.com'
         secret_key: 'y5m^_^ak6+5(f.m^_^ak6+5(f.m^_^ak6+5(f.'
         cache:
           engine: 'memcached'

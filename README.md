@@ -5,6 +5,8 @@ Project management web application with scrum in mind! Built on top of Django an
 
 ## Sample pillar
 
+Simple taiga server 
+
     taiga:
       server:
         enabled: true
@@ -19,6 +21,21 @@ Project management web application with scrum in mind! Built on top of Django an
           name: 'taiga'
           password: 'password'
           user: 'taiga'
+        mail:
+          host: localhost
+          port: 25
+
+Simple taiga server with TLS mail
+
+    taiga:
+      server:
+        ...
+        mail:
+          host: localhost
+          port: 465
+          ssl: True
+          user: taiga
+          password: password
 
 ## Read more
 

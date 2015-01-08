@@ -17,12 +17,18 @@ PUBLIC_REGISTER_ENABLED = True
 DEFAULT_FROM_EMAIL = "no-reply@example.com"
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
-#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-#EMAIL_USE_TLS = False
-#EMAIL_HOST = "localhost"
-#EMAIL_HOST_USER = ""
-#EMAIL_HOST_PASSWORD = ""
-#EMAIL_PORT = 25
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = False
+{%- if server.mail.get('ssl', False) %}
+EMAIL_USE_TLS = True
+{%- endif %}
+{%- if server.mail.get('tls', False) %}
+EMAIL_USE_SSL = True
+{%- endif %}
+EMAIL_HOST = "{{ server.mail.get('host', 'localhost') }}"
+EMAIL_HOST_USER = "{{ server.mail.user }}"
+EMAIL_HOST_PASSWORD = "{{ server.mail.password }}"
+EMAIL_PORT = {{ server.mail.get('port', '25') }}
 
 REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
     "rest_framework.renderers.JSONRenderer",
@@ -44,3 +50,5 @@ DATABASES = {
         'USER': '{{ server.database.user }}'
     }
 }
+
+PUBLIC_REGISTER_ENABLED = False

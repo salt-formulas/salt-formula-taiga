@@ -12,7 +12,7 @@ SITES["front"]["domain"] = "{{ server.server_name }}"
 
 DEBUG = True
 TEMPLATE_DEBUG = True
-PUBLIC_REGISTER_ENABLED = True
+PUBLIC_REGISTER_ENABLED = False
 
 DEFAULT_FROM_EMAIL = "{{ server.mail_from }}"
 SERVER_EMAIL = DEFAULT_FROM_EMAIL

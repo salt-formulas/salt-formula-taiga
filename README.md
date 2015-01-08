@@ -24,6 +24,7 @@ Simple taiga server
         mail:
           host: localhost
           port: 25
+          encryption: none
 
 Simple taiga server with TLS mail
 
@@ -33,9 +34,21 @@ Simple taiga server with TLS mail
         mail:
           host: localhost
           port: 465
-          ssl: True
           user: taiga
           password: password
+          encryption: tls
+
+Simple taiga server with SSL mail
+
+    taiga:
+      server:
+        ...
+        mail:
+          host: localhost
+          port: 995
+          user: taiga
+          password: password
+          encryption: ssl
 
 ## Read more
 

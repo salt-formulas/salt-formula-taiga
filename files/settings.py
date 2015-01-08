@@ -18,11 +18,10 @@ DEFAULT_FROM_EMAIL = "no-reply@example.com"
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_USE_TLS = False
-{%- if server.mail.get('ssl', False) %}
+{%- if server.mail.get('encryption', 'ssl') %}
 EMAIL_USE_TLS = True
 {%- endif %}
-{%- if server.mail.get('tls', False) %}
+{%- if server.mail.get('encryption', 'tls') %}
 EMAIL_USE_SSL = True
 {%- endif %}
 EMAIL_HOST = "{{ server.mail.get('host', 'localhost') }}"

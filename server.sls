@@ -134,7 +134,6 @@ init_taiga_database:
     - source ../bin/activate; python manage.py loaddata initial_user
     - source ../bin/activate; python manage.py loaddata initial_project_templates
     - source ../bin/activate; python manage.py loaddata initial_role
-    - source ../bin/activate; python manage.py sample_data
   - cwd: /srv/taiga/taiga-back
   - require:
     - cmd: setup_taiga_database

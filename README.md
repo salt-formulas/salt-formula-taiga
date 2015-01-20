@@ -55,3 +55,4 @@ Simple taiga server with SSL mail
 ## Read more
 
 * https://github.com/taigaio
+* http://taigaio.github.io/taiga-doc/dist/setup-production.html

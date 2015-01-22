@@ -2,7 +2,7 @@
 
 from .common import *
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "https://{{ server.server_name }}/media/"
 STATIC_URL = "static/"
 ADMIN_MEDIA_PREFIX = "/static/admin/"
 

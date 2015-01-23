@@ -9,8 +9,8 @@ TEMPLATE_DEBUG = DEBUG
 PUBLIC_REGISTER_ENABLED = False
 
 MEDIA_URL = "{{ server.server_protocol }}://{{ server.server_name }}/media/"
-STATIC_URL = "static/"
-ADMIN_MEDIA_PREFIX = "/static/admin/"
+STATIC_URL = "{{ server.server_protocol }}://{{ server.server_name }}/static/"
+ADMIN_MEDIA_PREFIX = "static/admin/"
 
 SITES["front"]["domain"] = "{{ server.server_name }}"
 SITES["front"]["scheme"] = "{{ server.server_protocol }}"

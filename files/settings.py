@@ -3,7 +3,7 @@
 
 from .common import *
 
-DEBUG = {% if system.environment in ['stg', 'dev'] %}True{%- else %}False{%- endif %}
+DEBUG = {% if system.get('environment', 'prd') in ['stg', 'dev'] %}True{%- else %}False{%- endif %}
 TEMPLATE_DEBUG = DEBUG
 
 PUBLIC_REGISTER_ENABLED = False

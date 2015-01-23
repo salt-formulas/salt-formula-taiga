@@ -1,18 +1,19 @@
 {%- from "taiga/map.jinja" import server with context %}
+{%- from "linux/map.jinja" import system with context %}
 
 from .common import *
 
-MEDIA_URL = "https://{{ server.server_name }}/media/"
+DEBUG = {% if system.environment in ['stg', 'dev'] %}True{%- else %}False{%- endif %}
+TEMPLATE_DEBUG = DEBUG
+
+PUBLIC_REGISTER_ENABLED = False
+
+MEDIA_URL = "{{ server.server_protocol }}://{{ server.server_name }}/media/"
 STATIC_URL = "static/"
 ADMIN_MEDIA_PREFIX = "/static/admin/"
 
-# This should change if you want generate urls in emails
-# for external dns.
 SITES["front"]["domain"] = "{{ server.server_name }}"
-
-DEBUG = True
-TEMPLATE_DEBUG = True
-PUBLIC_REGISTER_ENABLED = False
+SITES["front"]["scheme"] = "{{ server.server_protocol }}"
 
 DEFAULT_FROM_EMAIL = "{{ server.mail_from }}"
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
@@ -51,5 +52,3 @@ DATABASES = {
         'USER': '{{ server.database.user }}'
     }
 }
-
-PUBLIC_REGISTER_ENABLED = False

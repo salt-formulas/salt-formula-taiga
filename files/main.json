@@ -2,7 +2,7 @@
 {
     "api": "{{ server.server_protocol }}://{{ server.server_name }}/api/v1/",
     "debug": "true",
-    "eventsUrl": "ws://example.com/events",
+{#    "eventsUrl": "ws://example.com/events", #}
     "publicRegisterEnabled": false,
     "privacyPolicyUrl": null,
     "termsOfServiceUrl": null,

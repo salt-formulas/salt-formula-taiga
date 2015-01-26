@@ -94,6 +94,15 @@ taiga_build_dirs:
   - require:
     - git: taiga_frontend_repo
 
+/srv/taiga/taiga-front/dist/js/conf.json:
+  file.managed:
+  - source: salt://taiga/files/main.json
+  - template: jinja
+  - mode: 644
+  - require:
+    - git: taiga_frontend_repo
+    - cmd: init_taiga_frontend_gulp
+
 /srv/taiga/conf/circus.ini:
   file.managed:
   - source: salt://taiga/files/circus.ini

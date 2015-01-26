@@ -6,11 +6,13 @@ from .common import *
 DEBUG = {% if system.get('environment', 'prd') in ['stg', 'dev'] %}True{%- else %}False{%- endif %}
 TEMPLATE_DEBUG = DEBUG
 
+SECRET_KEY = "{{ server.secret_key }}"
+
 PUBLIC_REGISTER_ENABLED = False
 
 MEDIA_URL = "{{ server.server_protocol }}://{{ server.server_name }}/media/"
 STATIC_URL = "{{ server.server_protocol }}://{{ server.server_name }}/static/"
-ADMIN_MEDIA_PREFIX = "static/admin/"
+ADMIN_MEDIA_PREFIX = "{{ server.server_protocol }}://{{ server.server_name }}/static/admin/"
 
 SITES["front"]["domain"] = "{{ server.server_name }}"
 SITES["front"]["scheme"] = "{{ server.server_protocol }}"

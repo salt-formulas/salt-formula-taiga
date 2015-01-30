@@ -1,6 +1,7 @@
 {%- from "taiga/map.jinja" import server with context %}
 {%- from "linux/map.jinja" import system with context %}
 
+from .celery import *
 from .common import *
 
 DEBUG = {% if system.get('environment', 'prd') in ['stg', 'dev'] %}True{%- else %}False{%- endif %}
@@ -54,3 +55,7 @@ DATABASES = {
         'USER': '{{ server.database.user }}'
     }
 }
+
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ENABLED = False

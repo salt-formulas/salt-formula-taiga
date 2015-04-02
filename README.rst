@@ -1,9 +1,12 @@
 
-# Taiga
+=====
+Taiga
+=====
 
 Project management web application with scrum in mind! Built on top of Django and AngularJ.
 
-## Sample pillar
+Sample pillars
+==============
 
 Simple taiga server 
 
@@ -52,7 +55,8 @@ Simple taiga server with SSL mail
           password: password
           encryption: ssl
 
-## Read more
+Read more
+==========
 
 * https://github.com/taigaio
 * http://taigaio.github.io/taiga-doc/dist/setup-production.html

@@ -124,16 +124,16 @@ circus_service:
 setup_taiga_database:
   cmd.run:
   - names:
-    - source ../bin/activate; python manage.py migrate --noinput
-    - source ../bin/activate; python manage.py collectstatic --noinput
+    - . ../bin/activate; python manage.py migrate --noinput
+    - . ../bin/activate; python manage.py collectstatic --noinput
   - cwd: /srv/taiga/taiga-back
 
 init_taiga_database:
   cmd.run:
   - names:
-    - source ../bin/activate; python manage.py loaddata initial_user
-    - source ../bin/activate; python manage.py loaddata initial_project_templates
-    - source ../bin/activate; python manage.py loaddata initial_role
+    - . ../bin/activate; python manage.py loaddata initial_user
+    - . ../bin/activate; python manage.py loaddata initial_project_templates
+    - . ../bin/activate; python manage.py loaddata initial_role
   - cwd: /srv/taiga/taiga-back
   - require:
     - cmd: setup_taiga_database

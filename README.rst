@@ -10,6 +10,8 @@ Sample pillars
 
 Simple taiga server 
 
+.. code-block:: yaml
+
     taiga:
       server:
         enabled: true
@@ -33,6 +35,8 @@ Simple taiga server
 
 Simple taiga server with TLS mail
 
+.. code-block:: yaml
+
     taiga:
       server:
         ...
@@ -45,6 +49,8 @@ Simple taiga server with TLS mail
 
 Simple taiga server with SSL mail
 
+.. code-block:: yaml
+
     taiga:
       server:
         ...
@@ -56,7 +62,7 @@ Simple taiga server with SSL mail
           encryption: ssl
 
 Read more
-==========
+=========
 
 * https://github.com/taigaio
 * http://taigaio.github.io/taiga-doc/dist/setup-production.html

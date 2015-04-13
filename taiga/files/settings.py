@@ -46,7 +46,7 @@ DATABASES = {
         'PORT': '3306',
         'OPTIONS': { 'init_command': 'SET storage_engine=INNODB,character_set_connection=utf8,collation_connection=utf8_unicode_ci', },
         {% else %}
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'transaction_hooks.backends.postgresql_psycopg2',
         'PORT': '5432',
         {%- endif %}
         'HOST': '{{ server.database.host }}',

@@ -55,6 +55,7 @@ taiga_build_dirs:
     - /srv/taiga/taiga-front/bower_components
     - /srv/taiga/taiga-front/tmp
     - /srv/taiga/taiga-front/dist
+    - /srv/taiga/taiga-front/vendor
     - /srv/taiga/taiga-front/app/vendor
   - user: taiga
   - group: taiga

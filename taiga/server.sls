@@ -3,8 +3,8 @@
 
 include:
 - git
-- nodejs
-- ruby
+#- nodejs
+#- ruby
 
 taiga_packages:
   pkg.installed:
@@ -48,6 +48,7 @@ taiga_dir:
   - require:
     - virtualenv: /srv/taiga
 
+{#
 taiga_build_dirs:
   file.directory:
   - names:
@@ -62,6 +63,7 @@ taiga_build_dirs:
   - makedirs: true
   - require:
     - git: taiga_frontend_repo
+#}
 
 /srv/taiga/conf:
   file.directory:
@@ -86,14 +88,6 @@ taiga_build_dirs:
   - mode: 644
   - require:
     - git: taiga_backend_repo
-
-/srv/taiga/taiga-front/conf/main.json:
-  file.managed:
-  - source: salt://taiga/files/main.json
-  - template: jinja
-  - mode: 644
-  - require:
-    - git: taiga_frontend_repo
 
 /srv/taiga/conf/circus.ini:
   file.managed:
@@ -139,6 +133,8 @@ init_taiga_database:
   - require:
     - cmd: setup_taiga_database
 
+{#
+
 gulp:
   npm.installed:
   - require:
@@ -183,13 +179,14 @@ init_taiga_frontend_gulp:
   - require:
     - npm: gulp
 
+#}
+
 /srv/taiga/taiga-front/dist/js/conf.json:
   file.managed:
-  - source: salt://taiga/files/main.json
+  - source: salt://taiga/files/conf.json
   - template: jinja
   - mode: 644
   - require:
     - git: taiga_frontend_repo
-    - cmd: init_taiga_frontend_gulp
 
 {%- endif %}

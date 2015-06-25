@@ -1,0 +1,41 @@
+applications:
+- taiga
+parameters:
+  _param:
+    taiga_mail_host: localhost
+    taiga_mail_port: 25
+    taiga_mail_user: none
+    taiga_mail_password: none
+    taiga_mail_encryption: none
+    taiga_mail_from: mail@localhost
+    taiga_server_name: taiga.domain.com
+  taiga:
+    server:
+      enabled: true
+      secret_key: ${_param:taiga_secret_key}
+      mail_from: ${_param:taiga_mail_from}
+      server_name: ${_param:taiga_server_name}
+      server_protocol: ${_param:taiga_server_protocol}
+      cache:
+        engine: memcached
+        host: 127.0.0.1
+        prefix: CACHE_TAIGA
+      database:
+        engine: postgresql
+        host: 127.0.0.1
+        name: taiga
+        password: ${_param:postgresql_taiga_password}
+        user: taiga
+      message_queue:
+        engine: rabbitmq
+        host: 127.0.0.1
+        port: 5672
+        user: openstack
+        password: ${_param:rabbitmq_taiga_password}
+        virtual_host: '/taiga'
+      mail:
+        host: ${_param:taiga_mail_host}
+        port: ${_param:taiga_mail_port}
+        user: ${_param:taiga_mail_user}
+        password: ${_param:taiga_mail_password}
+        encryption: ${_param:taiga_mail_encryption}

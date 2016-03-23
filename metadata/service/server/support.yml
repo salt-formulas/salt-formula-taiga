@@ -1,0 +1,13 @@
+parameters:
+  taiga:
+    _support:
+      backupninja:
+        enabled: true
+      collectd:
+        enabled: false
+      heka:
+        enabled: false
+      sensu:
+        enabled: false
+      sphinx:
+        enabled: false

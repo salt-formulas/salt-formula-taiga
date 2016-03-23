@@ -3,6 +3,11 @@
 taiga-formula
 =============
 
+0.1
+---
+
+- complete refactor
+
 0.0.3
 -----
 

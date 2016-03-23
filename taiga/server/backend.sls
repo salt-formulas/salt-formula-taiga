@@ -37,14 +37,22 @@ taiga_backend_conf:
   - name: {{ server.dir }}/taiga-back/settings/local.py
   - source: salt://taiga/files/settings.py
   - template: jinja
-  - mode: 644
+  - mode: 640
+  - group: taiga
   - require:
     - git: taiga_backend_repo
     - file: taiga_media_dir
+    - file: taiga_static_dir
 
 taiga_media_dir:
   file.directory:
-  - name: {{ server.dir }}/media
+  - name: {{ server.dir }}/taiga-back/media
+  - owner: taiga
+  - group: taiga
+
+taiga_static_dir:
+  file.directory:
+  - name: {{ server.dir }}/taiga-back/static
   - owner: taiga
   - group: taiga
 

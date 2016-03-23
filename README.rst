@@ -8,7 +8,7 @@ Project management web application with scrum in mind! Built on top of Django an
 Sample pillars
 ==============
 
-Simple taiga server 
+Simple taiga server
 
 .. code-block:: yaml
 
@@ -33,7 +33,7 @@ Simple taiga server
           port: 25
           encryption: none
 
-Simple taiga server with TLS mail
+Simple taiga server with TLS mail and authentication
 
 .. code-block:: yaml
 

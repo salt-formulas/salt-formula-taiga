@@ -1,10 +1,9 @@
 {%- from "taiga/map.jinja" import server with context %}
-{%- from "linux/map.jinja" import system with context %}
 
 from .celery import *
 from .common import *
 
-DEBUG = {% if system.get('environment', 'prd') in ['stg', 'dev'] %}True{%- else %}False{%- endif %}
+DEBUG = {{ server.get('debug', False) }}
 TEMPLATE_DEBUG = DEBUG
 
 SECRET_KEY = "{{ server.secret_key }}"
@@ -35,10 +34,6 @@ EMAIL_HOST_USER = "{{ server.mail.user }}"
 EMAIL_HOST_PASSWORD = "{{ server.mail.password }}"
 EMAIL_PORT = {{ server.mail.get('port', '25') }}
 
-REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
-    "rest_framework.renderers.JSONRenderer",
-)
-
 DATABASES = {
     'default': {
         {%- if server.database.engine == 'mysql' %}
@@ -58,4 +53,4 @@ DATABASES = {
 
 BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_ENABLED = False
+CELERY_ENABLED = True

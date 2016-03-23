@@ -1,8 +1,9 @@
 
 {% set server = salt['grains.filter_by']({
     'Debian': {
-        'pkgs': ['build-essential', 'binutils-doc', 'autoconf', 'flex', 'bison', 'libjpeg-dev', 'libfreetype6-dev', 'zlib1g-dev', 'libzmq3-dev', 'libpq-dev', 'libgdbm-dev', 'libncurses5-dev', 'automake', 'libtool', 'libffi-dev', 'curl', 'tmux', 'python3', 'python3-pip', 'python-dev', 'python3-dev', 'python-pip', 'virtualenvwrapper', 'curl', 'libxml2-dev', 'libxslt1-dev', 'lib32z1-dev'],
+        'pkgs': ['build-essential', 'binutils-doc', 'autoconf', 'flex', 'bison', 'libjpeg-dev', 'libfreetype6-dev', 'zlib1g-dev', 'libzmq3-dev', 'libpq-dev', 'libgdbm-dev', 'libncurses5-dev', 'automake', 'libtool', 'libffi-dev', 'python3', 'python3-pip', 'python-dev', 'python3-dev', 'curl', 'libxml2-dev', 'libxslt1-dev', 'lib32z1-dev', 'gettext'],
         'dir': '/srv/taiga',
+        'virtualenv': '/srv/taiga/virtualenv',
         'user': 'taiga',
         'group': 'taiga',
         'backend_source': {

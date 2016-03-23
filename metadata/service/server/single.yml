@@ -7,8 +7,7 @@ parameters:
     taiga_mail_user: none
     taiga_mail_password: none
     taiga_mail_encryption: none
-    taiga_mail_from: mail@localhost
-    taiga_server_name: taiga.domain.com
+    taiga_mail_from: taiga@localhost
   taiga:
     server:
       enabled: true
@@ -16,10 +15,6 @@ parameters:
       mail_from: ${_param:taiga_mail_from}
       server_name: ${_param:taiga_server_name}
       server_protocol: ${_param:taiga_server_protocol}
-      cache:
-        engine: memcached
-        host: 127.0.0.1
-        prefix: CACHE_TAIGA
       database:
         engine: postgresql
         host: 127.0.0.1

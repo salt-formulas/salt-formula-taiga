@@ -1,2 +1,4 @@
-files/taiga-scripts/
-files/taiga-scripts/*
+tests/build/
+*.swp
+*.pyc
+.ropeproject

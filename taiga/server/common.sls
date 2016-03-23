@@ -7,6 +7,8 @@ taiga_packages:
 taiga_dir:
   file.directory:
   - name: {{ server.dir }}
+  - user: taiga
+  - group: taiga
 
 taiga_user:
   user.present:

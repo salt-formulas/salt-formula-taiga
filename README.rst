@@ -61,6 +61,31 @@ Simple taiga server with SSL mail
           password: password
           encryption: ssl
 
+Install ldap authentication plugin:
+
+.. code-block:: yaml
+
+    taiga:
+      server:
+        plugin:
+          taiga_contrib_ldap_auth:
+            enabled: true
+            source:
+              engine: pip
+              name: taiga-contrib-ldap-auth
+            parameters:
+              backend:
+                ldap_server: "ldaps://idm.example.com/"
+                ldap_port: 636
+                bind_bind_dn: uid=taiga,cn=users,cn=accounts,dc=tcpcloud,dc=eu
+                bind_bind_password: password
+                ldap_search_base: "cn=users,cn=accounts,dc=tcpcloud,dc=eu"
+                ldap_search_property: uid
+                ldap_email_property: mail
+                ldap_full_name_property: displayName
+              frontend:
+                loginFormType: ldap
+
 Read more
 =========
 

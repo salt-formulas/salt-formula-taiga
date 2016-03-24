@@ -1,6 +1,0 @@
-{%- from "taiga/map.jinja" import server with context -%}
-backup:
-  taiga:
-    fs_includes:
-      - {{ server.dir }}/taiga-back/media
-    fs_excludes: []

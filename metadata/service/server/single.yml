@@ -27,7 +27,7 @@ parameters:
         engine: rabbitmq
         host: 127.0.0.1
         port: 5672
-        user: openstack
+        user: taiga
         password: ${_param:rabbitmq_taiga_password}
         virtual_host: '/taiga'
       mail:

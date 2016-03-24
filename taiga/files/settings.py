@@ -30,9 +30,11 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 {%- endif %}
 EMAIL_HOST = "{{ server.mail.get('host', 'localhost') }}"
+EMAIL_PORT = {{ server.mail.get('port', '25') }}
+{%- if server.mail.get('user', False) %}
 EMAIL_HOST_USER = "{{ server.mail.user }}"
 EMAIL_HOST_PASSWORD = "{{ server.mail.password }}"
-EMAIL_PORT = {{ server.mail.get('port', '25') }}
+{%- endif %}
 
 DATABASES = {
     'default': {

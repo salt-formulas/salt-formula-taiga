@@ -60,6 +60,7 @@ CELERY_ENABLED = True
 {%- for plugin_name, plugin in server.get('plugin', {}).iteritems() %}
 {%- if plugin.get('enabled', true) %}
 # Plugin {{ plugin_name}}
+INSTALLED_APPS += ['{{ plugin_name }}']
 {%- for key, value in plugin.get('parameters', {}).get('backend', {}).iteritems() %}
 {{ key|upper }} = '{{ value }}'
 {%- endfor %}

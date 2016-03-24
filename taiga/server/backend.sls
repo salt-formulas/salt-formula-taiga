@@ -81,4 +81,21 @@ init_taiga_database:
   - watch:
     - cmd: setup_taiga_database
 
+{%- for plugin_name, plugin in server.get('plugin', {}).iteritems() %}
+{%- if plugin.get('enabled', true) %}
+
+{%- if plugin.source.engine == 'pip' %}
+install_plugin_{{ plugin_name }}:
+  pip.installed:
+    - name: {{ plugin.source.name }}
+    - bin_env: {{ server.virtualenv }}
+    - watch:
+      - virtualenv: {{ server.virtualenv }}
+    - require_in:
+      - cmd: setup_taiga_database
+{%- endif %}
+
+{%- endif %}
+{%- endfor %}
+
 {%- endif %}

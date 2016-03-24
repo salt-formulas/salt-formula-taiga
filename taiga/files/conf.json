@@ -1,12 +1,19 @@
 {%- from "taiga/map.jinja" import server with context %}
 {
     "api": "{{ server.server_protocol }}://{{ server.server_name }}/api/v1/",
-    "debug": "true",
+    "debug": "{{ 'true' if server.get('debug', False) else 'false' }}",
 {#    "eventsUrl": "ws://example.com/events", #}
     "publicRegisterEnabled": false,
     "privacyPolicyUrl": null,
     "termsOfServiceUrl": null,
     "maxUploadFileSize": null,
     "gitHubClientId": null,
+    {%- for plugin_name, plugin in server.get('plugin', {}).iteritems() %}
+    {%- if plugin.get('enabled', true) %}
+    {%- for key, value in plugin.get('parameters', {}).get('frontend', {}).iteritems() %}
+    "{{ key }}: "{{ value }}",
+    {%- endfor %}
+    {%- endif %}
+    {%- endfor %}
     "contribPlugins": []
 }

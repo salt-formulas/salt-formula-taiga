@@ -43,7 +43,7 @@ DATABASES = {
         'PORT': '3306',
         'OPTIONS': { 'init_command': 'SET storage_engine=INNODB,character_set_connection=utf8,collation_connection=utf8_unicode_ci', },
         {% else %}
-        'ENGINE': 'transaction_hooks.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'PORT': '5432',
         {%- endif %}
         'HOST': '{{ server.database.host }}',
@@ -53,7 +53,7 @@ DATABASES = {
     }
 }
 
-BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+BROKER_URL = 'amqp{% if server.message_queue.get('ssl', False) %}s{% endif %}://{{ server.message_queue.user }}:{{ server.message_queue.password }}@{{ server.message_queue.host }}:{{ server.message_queue.get('port', 5672) }}/{{ server.message_queue.get('virtual_host', '/') }}'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_ENABLED = True
 
@@ -66,3 +66,7 @@ INSTALLED_APPS += ['{{ plugin_name }}']
 {%- endfor %}
 {%- endif %}
 {%- endfor %}
+
+{#-
+vim: syntax=jinja
+-#}

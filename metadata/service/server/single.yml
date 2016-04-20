@@ -6,9 +6,9 @@ parameters:
   _param:
     taiga_mail_host: localhost
     taiga_mail_port: 25
-    taiga_mail_user: none
-    taiga_mail_password: none
-    taiga_mail_encryption: none
+    taiga_mail_user: false
+    taiga_mail_password: false
+    taiga_mail_encryption: false
     taiga_mail_from: taiga@localhost
   taiga:
     server:

@@ -1,0 +1,8 @@
+name: taiga
+os: Debian
+os_family: Debian
+version: 201606
+release: 1
+summary: taiga Salt formula
+description: Install and configure taiga server and relay.
+top_level_dir: taiga

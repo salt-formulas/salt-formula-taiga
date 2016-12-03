@@ -8,7 +8,7 @@ include:
 {{ server.virtualenv }}:
   virtualenv.manage:
   - system_site_packages: false
-  - python: /usr/bin/python3.4
+  - python: /usr/bin/python3.5
   - require:
     - pkg: taiga_packages
     - pkg: git_packages

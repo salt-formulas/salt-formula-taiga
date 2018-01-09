@@ -10,6 +10,6 @@ Vcs-Git: https://github.com/tcpcloud/salt-formula-taiga.git
 
 Package: salt-formula-taiga
 Architecture: all
-Depends: ${misc:Depends}, salt-master, reclass
+Depends: ${misc:Depends}
 Description: taiga Salt formula
  Install and configure taiga server and relay.

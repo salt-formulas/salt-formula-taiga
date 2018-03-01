@@ -5,6 +5,15 @@ Taiga
 
 Project management web application with scrum in mind! Built on top of Django and AngularJ.
 
+Dependencies
+============
+
+Other formulas:
+  * https://github.com/salt-formulas/salt-formula-git
+
+Services:
+  * A database server available (PostgreSQL/MySQL)
+
 Sample pillars
 ==============
 

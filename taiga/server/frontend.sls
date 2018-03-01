@@ -2,8 +2,8 @@
 {%- if server.enabled %}
 
 include:
-- taiga.server.common
-- git
+  - taiga.server.common
+  - git
 
 taiga_frontend_repo:
   git.latest:

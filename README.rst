@@ -38,6 +38,12 @@ Simple taiga server
           name: 'taiga'
           password: 'password'
           user: 'taiga'
+        message_queue:
+          engine: rabbitmq
+          host: 127.0.0.1
+          user: taiga
+          password: 'password'
+          virtual_host: '/taiga'
         mail:
           host: localhost
           port: 25

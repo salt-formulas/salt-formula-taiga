@@ -9,10 +9,14 @@ Dependencies
 ============
 
 Other formulas:
-  * https://github.com/salt-formulas/salt-formula-git
+  * https://github.com/salt-formulas/salt-formula-git 
+  * https://github.com/salt-formulas/salt-formula-nginx
+  * https://github.com/salt-formulas/salt-formula-supervisor
 
 Services:
   * A database server available (PostgreSQL/MySQL)
+  * Message queue server, e.g. RabbitMq
+  * Cache server, currently Redis is hard coded
 
 Sample pillars
 ==============

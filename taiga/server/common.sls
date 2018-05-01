@@ -9,6 +9,8 @@ taiga_dir:
   - name: {{ server.dir }}
   - user: taiga
   - group: taiga
+  - require:
+    - user: taiga_user
 
 taiga_user:
   user.present:
@@ -22,3 +24,5 @@ taiga_user:
   - group: taiga
   - mode: 775
   - makedirs: true
+  - require:
+    - user: taiga_user

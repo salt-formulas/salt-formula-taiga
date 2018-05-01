@@ -3,15 +3,13 @@
 
 include:
   - taiga.server.common
-  - git
 
 {{ server.virtualenv }}:
   virtualenv.manage:
   - system_site_packages: false
-  - python: /usr/bin/python3.5
+  - python: /usr/bin/python3
   - require:
     - pkg: taiga_packages
-    - pkg: git_packages
     - file: taiga_dir
 
 install_requirements:
@@ -49,12 +47,16 @@ taiga_media_dir:
   - name: {{ server.dir }}/taiga-back/media
   - owner: taiga
   - group: taiga
+  - require:
+    - user: taiga_user
 
 taiga_static_dir:
   file.directory:
   - name: {{ server.dir }}/taiga-back/static
   - owner: taiga
   - group: taiga
+  - require:
+    - user: taiga_user
 
 setup_taiga_database:
   cmd.run:
@@ -97,5 +99,37 @@ install_plugin_{{ plugin_name }}:
 
 {%- endif %}
 {%- endfor %}
+
+{%- if grains.init == "systemd" %}
+taiga_backend_systemd:
+  file.managed:
+    - name: /etc/systemd/system/taiga-backend.service
+    - source: salt://taiga/files/taiga-backend.service
+    - template: jinja
+
+taiga_worker_systemd:
+  file.managed:
+    - name: /etc/systemd/system/taiga-worker.service
+    - source: salt://taiga/files/taiga-worker.service
+    - template: jinja
+
+taiga_backend_service:
+  service.running:
+    - name: taiga-backend
+    - enable: true
+    - watch:
+      - git: taiga_backend_repo
+      - file: taiga_backend_conf
+      - file: taiga_backend_systemd
+
+taiga_worker_service:
+  service.running:
+    - name: taiga-worker
+    - enable: true
+    - watch:
+      - git: taiga_backend_repo
+      - file: taiga_backend_conf
+      - file: taiga_worker_systemd
+{%- endif %}
 
 {%- endif %}

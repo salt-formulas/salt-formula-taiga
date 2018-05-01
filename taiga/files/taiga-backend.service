@@ -1,0 +1,17 @@
+{%- from "taiga/map.jinja" import server with context -%}
+
+[Unit]
+Description=Taiga backend
+After=network.target redis-server.service rabbitmq-server.service
+
+[Service]
+Type=simple
+User={{ server.user }}
+Group={{ server.group }}
+WorkingDirectory={{ server.dir }}/taiga-back
+ExecStart={{ server.virtualenv }}/bin/gunicorn -w 3 -t 60 --pythonpath=. -b 127.0.0.1:8001 taiga.wsgi
+RestartSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

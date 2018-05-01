@@ -17,7 +17,7 @@ ADMIN_MEDIA_PREFIX = "{{ server.server_protocol }}://{{ server.server_name }}/st
 SITES["front"]["domain"] = "{{ server.server_name }}"
 SITES["front"]["scheme"] = "{{ server.server_protocol }}"
 
-DEFAULT_FROM_EMAIL = "{{ server.mail_from }}"
+DEFAULT_FROM_EMAIL = "{{ server.get('mail_from', server.mail.from) }}"
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

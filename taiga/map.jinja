@@ -1,7 +1,7 @@
 
 {% set server = salt['grains.filter_by']({
     'Debian': {
-        'pkgs': ['build-essential', 'binutils-doc', 'autoconf', 'flex', 'bison', 'libjpeg-dev', 'libfreetype6-dev', 'zlib1g-dev', 'libzmq3-dev', 'libpq-dev', 'libgdbm-dev', 'libncurses5-dev', 'automake', 'libtool', 'libffi-dev', 'python3', 'python3-pip', 'python-virtualenv', 'python-dev', 'python3-dev', 'curl', 'libxml2-dev', 'libxslt1-dev', 'lib32z1-dev', 'gettext', 'git'],
+        'pkgs': ['build-essential', 'binutils-doc', 'autoconf', 'flex', 'bison', 'libjpeg-dev', 'libfreetype6-dev', 'zlib1g-dev', 'libzmq3-dev', 'libpq-dev', 'libgdbm-dev', 'libncurses5-dev', 'automake', 'libtool', 'libffi-dev', 'python3', 'python3-pip', 'python-virtualenv', 'python-dev', 'python3-dev', 'curl', 'libxml2-dev', 'libxslt1-dev', 'lib32z1-dev', 'gettext', 'git', 'nodejs', 'coffeescript', 'npm'],
         'dir': '/srv/taiga',
         'virtualenv': '/srv/taiga/virtualenv',
         'user': 'taiga',
@@ -13,6 +13,10 @@
         'frontend_source': {
             'address': 'https://github.com/taigaio/taiga-front-dist.git',
             'revision': 'stable',
+        },
+        'events_source': {
+            'address': 'https://github.com/taigaio/taiga-events.git',
+            'revision': 'master',
         },
         'bind': {
             'host': '127.0.0.1',

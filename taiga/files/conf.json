@@ -1,8 +1,8 @@
-{%- from "taiga/map.jinja" import server with context %}
+{%- from "taiga/map.jinja" import server with context -%}
 {
     "api": "{{ server.server_protocol }}://{{ server.server_name }}/api/v1/",
     "debug": "{{ 'true' if server.get('debug', False) else 'false' }}",
-{#    "eventsUrl": "ws://example.com/events", #}
+    "eventsUrl": "ws://{{ server.server_name }}/events",
     "publicRegisterEnabled": false,
     "privacyPolicyUrl": null,
     "termsOfServiceUrl": null,

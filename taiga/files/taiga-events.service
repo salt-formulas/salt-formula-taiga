@@ -1,0 +1,17 @@
+{%- from "taiga/map.jinja" import server with context -%}
+
+[Unit]
+Description=Taiga events
+After=network.target redis-server.service rabbitmq-server.service
+
+[Service]
+Type=simple
+User={{ server.user }}
+Group={{ server.group }}
+WorkingDirectory={{ server.dir }}/taiga-events
+ExecStart=/usr/bin/coffee index.coffee
+RestartSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

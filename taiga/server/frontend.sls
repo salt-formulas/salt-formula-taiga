@@ -3,7 +3,6 @@
 
 include:
   - taiga.server.common
-  - git
 
 taiga_frontend_repo:
   git.latest:

@@ -1,0 +1,8 @@
+{%- from "taiga/map.jinja" import server with context -%}
+{
+    "url": "amqp{% if server.message_queue.get('ssl', False) %}s{% endif %}://{{ server.message_queue.user }}:{{ server.message_queue.password }}@{{ server.message_queue.host }}:{{ server.message_queue.get('port', 5672) }}/{{ server.message_queue.get('virtual_host', '/') }}",
+    "secret": "{{ server.secret_key }}",
+    "webSocketServer": {
+        "port": 8888
+    }
+}

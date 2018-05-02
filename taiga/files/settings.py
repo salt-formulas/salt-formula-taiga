@@ -1,4 +1,4 @@
-{%- from "taiga/map.jinja" import server with context %}
+{%- from "taiga/map.jinja" import server with context -%}
 
 from .celery import *
 from .common import *

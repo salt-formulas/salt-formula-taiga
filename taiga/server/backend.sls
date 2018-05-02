@@ -42,6 +42,18 @@ taiga_backend_conf:
     - file: taiga_media_dir
     - file: taiga_static_dir
 
+taiga_worker_conf:
+  file.managed:
+  - name: {{ server.dir }}/taiga-back/settings/celery.py
+  - source: salt://taiga/files/celery.py
+  - template: jinja
+  - mode: 640
+  - group: taiga
+  - require:
+    - git: taiga_backend_repo
+    - file: taiga_media_dir
+    - file: taiga_static_dir
+
 taiga_media_dir:
   file.directory:
   - name: {{ server.dir }}/taiga-back/media
@@ -128,7 +140,7 @@ taiga_worker_service:
     - enable: true
     - watch:
       - git: taiga_backend_repo
-      - file: taiga_backend_conf
+      - file: taiga_worker_conf
       - file: taiga_worker_systemd
 {%- endif %}
 

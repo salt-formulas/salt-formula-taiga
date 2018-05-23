@@ -25,7 +25,7 @@ taiga_events_npm:
   cmd.run:
     - name: npm install
     - cwd: {{ server.dir }}/taiga-events
-    - creates: node_modules
+    - creates: {{ server.dir }}/taiga-events/node_modules
     - watch:
       - git: taiga_events_repo
 

@@ -2,7 +2,7 @@
 {
     "api": "{{ server.server_protocol }}://{{ server.server_name }}/api/v1/",
     "debug": "{{ 'true' if server.get('debug', False) else 'false' }}",
-    "eventsUrl": "ws://{{ server.server_name }}/events",
+    "eventsUrl": "ws{% if server.server_protocol == "https" %}s{% endif %}://{{ server.server_name }}/events",
     "publicRegisterEnabled": false,
     "privacyPolicyUrl": null,
     "termsOfServiceUrl": null,
